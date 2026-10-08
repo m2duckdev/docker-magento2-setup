@@ -1,0 +1,20 @@
+docker compose exec php php bin/magento setup:install \
+  --base-url=http://localhost:8080/ \
+  --db-host=db \
+  --db-name=magento \
+  --db-user=magento \
+  --db-password=devmagento \
+  --admin-firstname=Admin\
+  --admin-lastname=Admin \
+  --admin-email=admin@example.com \
+  --admin-user=admin\
+  --admin-password='admin123' \
+  --language=en_GB \
+  --currency=GBP \
+  --timezone=Europe/London \
+  --use-rewrites=1 \
+  --search-engine=opensearch \
+  --opensearch-host=opensearch \
+  --opensearch-port=9200 \
+  --opensearch-index-prefix=magento2 \
+  --opensearch-timeout=15
