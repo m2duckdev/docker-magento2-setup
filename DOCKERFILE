@@ -1,0 +1,26 @@
+FROM php:8.5-fpm
+
+COPY --from=mlocati/php-extension-installer:2 /usr/bin/install-php-extensions /usr/local/bin/
+
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    && install-php-extensions \
+        bcmath \
+        gd \
+        ftp \
+        intl \
+        mbstring \
+        mysqli \
+        pdo_mysql \
+        soap \
+        sockets \
+        xsl \
+        zip \
+        opcache \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:2.10 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
